@@ -271,6 +271,10 @@ Na mjestu donje crte se nalazi izračunati brojčani podatak.
 select LEN(serij_oznaka_proiz) as duzina, COUNT(LEN(serij_oznaka_proiz)) as 'broj pojavljivanja'
 from dobavljac_proizvod
 group by LEN(serij_oznaka_proiz)
+						    
+--ili ova informacija, jer nije precizirano sta tacno treba
+select serij_oznaka_proiz, LEN(serij_oznaka_proiz) as 'duzina podatka'
+from dobavljac_proizvod
 
 select 'Kolona serij_oznaka_proiz ima ' + 
 cast(COUNT(distinct LEN(serij_oznaka_proiz)) as varchar) + ' različite dužine podataka.' as informacija
