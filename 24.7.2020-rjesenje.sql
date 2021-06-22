@@ -70,13 +70,15 @@ create table prodaja
 	ukup_vrij money, --novcana varijabla
 	online_narudzba bit constraint CK_nulaIliJedan check (online_narudzba = 0 or online_narudzba = 1), 
 	--bit varijabla sa ogranicenjem kojim se mogu unijeti samo cifre 0 i 1
+	constraint PK_prodaja primary key (prodajaID),
+	constraint FK_prodaja_radnik foreign key (prodavacID) references radnik(radnikID)
 )
 
 /*
 --2
 Import podataka
 
-a) Iz tabele Employee iz šeme HumanResources baze AdventureWorks2017 u tabelu radnik importovati podatke po sljedecem pravilu:
+a) Iz tabele Employee iz Å¡eme HumanResources baze AdventureWorks2017 u tabelu radnik importovati podatke po sljedecem pravilu:
 	-BusinessEntityID -> radnikID
 	-NationalIDNumber -> drzavaID
 	-LoginID -> loginID
@@ -92,7 +94,7 @@ select *
 from radnik
 
 /*
-b) Iz tabela PurchaseOrderHeader i Vendor šeme Purchasing baze AdventureWorks2017 u tabelu nabavka importovati podatke po sljedecem pravilu:
+b) Iz tabela PurchaseOrderHeader i Vendor Å¡eme Purchasing baze AdventureWorks2017 u tabelu nabavka importovati podatke po sljedecem pravilu:
 	-PurchaseOrderID -> dobavljanjeID
 	-Status -> status
 	-EmployeeID -> radnikID
@@ -110,7 +112,7 @@ select *
 from nabavka
 
 /*
-c) Iz tabele SalesOrderHeader šeme Sales baze AdventureWorks2017 u tabelu prodaja importovati podatke po sljedecem pravilu:
+c) Iz tabele SalesOrderHeader Å¡eme Sales baze AdventureWorks2017 u tabelu prodaja importovati podatke po sljedecem pravilu:
 	-SalesPersonID -> prodavacID
 	-ShipDate -> dtm_isporuke
 	-TaxAmt -> vrij_poreza
